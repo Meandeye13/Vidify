@@ -1,0 +1,11 @@
+development:
+    app_id: '287289548013361'
+    secret: 'fe9618a93f8eb1be8c0f017e996e4fb1'
+    canvas: 'http://apps.facebook.com/ronvidify/'
+    callback_host: 'http://192.17.103.236:3000'
+
+production:
+    app_id: '287289548013361'
+    secret: 'fe9618a93f8eb1be8c0f017e996e4fb1'
+    canvas: 'http://apps.facebook.com/ronvidify/'
+    callback_host: 'http://192.17.103.236:3000'
