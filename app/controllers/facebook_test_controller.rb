@@ -22,6 +22,9 @@ def show
      @api = Koala::Facebook::API.new(session[:access_token])
 
       friendIds = @api.get_object("me/friends", "fields"=>"id")
+      ids = friendIds.map(&:values).flatten
+
+      @videos = Video.joins(:user).find(:all, :conditions => ["users.user_id in (?)", ids])
       friendIds.each do |id|
         User.create(:user_id => id['id'])
       end
@@ -49,7 +52,7 @@ def show
         if post['attachment'].has_key?('media')
           if post['attachment']['media'].length > 0
             if post['attachment']['media'][0].has_key?('video') 
-              @videoPosts.push(post)
+              @videoPosts.push(post['attachment'])
               user = User.where(:user_id => post['source_id']).first()
               user.videos.create(:user_id => post['source_id'], :created_time => post['created_time'], :post_id => post['post_id'], :img_src => post['attachment']['media'][0]['src'], :src_url => post['attachment']['media'][0]['video']['source_url'])
             end
