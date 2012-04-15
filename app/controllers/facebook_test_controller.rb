@@ -15,20 +15,50 @@ def show
     end   
 
      # auth established, now do a graph call:
-      
-    @api = Koala::Facebook::API.new(session[:access_token])
-    begin
-      @graph_data = @api.get_object("/me/statuses", "fields"=>"message")
-    rescue Exception=>ex
-      puts ex.message
+    redirect_to :action => "home"
+  end
+
+  def home
+     @api = Koala::Facebook::API.new(session[:access_token])
+
+      friendIds = @api.get_object("me/friends", "fields"=>"id")
+      friendIds.each do |id|
+        User.create(:user_id => id['id'])
+      end
+      @queryHash = {}
+      count = 1
+      for i in (0..15)
+        id = friendIds[i]['id']
+        begin
+          @queryHash["query#{i}"] = "SELECT post_id, source_id, created_time, attachment FROM stream Where source_id=#{id} limit 100"
+        rescue Exception => e
+          puts ex.message
+        end
+      end
+      # friendIds.each do |idHash|
+      #   id = idHash['id']
+        
+      #   count += 1
+      # end
+      @posts = @api.fql_multiquery(@queryHash)
+
+    @videoPosts = []
+    @posts.each_value do |query|
+      query.each do |post|
+
+        if post['attachment'].has_key?('media')
+          if post['attachment']['media'].length > 0
+            if post['attachment']['media'][0].has_key?('video') 
+              @videoPosts.push(post)
+              user = User.where(:user_id => post['source_id']).first()
+              user.videos.create(:user_id => post['source_id'], :created_time => post['created_time'], :post_id => post['post_id'], :img_src => post['attachment']['media'][0]['src'], :src_url => post['attachment']['media'][0]['video']['source_url'])
+            end
+          end
+        end
+      end
+
     end
-    
-  
-    respond_to do |format|
-     format.html {   }       
-    end
-    
-  
+
   end
 
 end

@@ -6,6 +6,8 @@ Vidify::Application.routes.draw do
 
   match "callback" => "facebook_test#callback"
 
+   match "home" => "facebook_test#home"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
