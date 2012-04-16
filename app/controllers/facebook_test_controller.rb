@@ -30,8 +30,9 @@ def show
       end
       @queryHash = {}
       count = 1
-      for i in (0..15)
+      for i in (0..10)
         id = friendIds[i]['id']
+        u = User.getUser(id)
         begin
           @queryHash["query#{i}"] = "SELECT post_id, source_id, created_time, attachment FROM stream Where source_id=#{id} limit 100"
         rescue Exception => e

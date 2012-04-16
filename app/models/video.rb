@@ -3,4 +3,6 @@ class Video < ActiveRecord::Base
 
 	belongs_to :user
 	validates :post_id, :uniqueness => true
+
+	scope :last_update, select(:created_time).find(:first, :order => "created_time DESC")
 end
