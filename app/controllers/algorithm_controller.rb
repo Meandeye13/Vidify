@@ -1,6 +1,6 @@
 #Kmeans algorithm
 def kMeans(centroids,partions,users,k)
-	groupRound++;
+	groupRound++
 	partions.each do |partion|
 		partion.clear()
 	end

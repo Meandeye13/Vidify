@@ -1,5 +1,8 @@
 <%= debug @queryHash %>
 
 <%= debug @videos %>
-
-<!--<iframe width="560" height="315" src="@graph_data[1]['source'] + "autoplay=0" " frameborder="0" allowfullscreen></iframe>-->
+<%= debug @videoPosts%>
+<%= debug @embedURL%>
+<% @embedURL.each do |url| %>
+<iframe width="560" height="315" src=<%= url %> " frameborder="0" allowfullscreen></iframe>
+<% end %>

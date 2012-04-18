@@ -34,28 +34,38 @@ def show
         id = friendIds[i]['id']
         u = User.getUser(id)
         begin
-          @queryHash["query#{i}"] = "SELECT post_id, source_id, created_time, attachment FROM stream Where source_id=#{id} limit 100"
+         #@queryHash["query#{i}"] = "SELECT post_id, source_id, created_time, attachment FROM stream Where source_id=#{id} limit 100"
         rescue Exception => e
           puts ex.message
         end
       end
+     
       # friendIds.each do |idHash|
       #   id = idHash['id']
         
       #   count += 1
       # end
-      @posts = @api.fql_multiquery(@queryHash)
+    @queryHash["query#{0}"] = "SELECT post_id, source_id, created_time, attachment FROM stream Where source_id=me() limit 10000"
+    @posts = @api.fql_multiquery(@queryHash)
 
     @videoPosts = []
+    @embedURL = []
     @posts.each_value do |query|
       query.each do |post|
 
         if post['attachment'].has_key?('media')
           if post['attachment']['media'].length > 0
             if post['attachment']['media'][0].has_key?('video') 
+              url = post['attachment']['media'][0]['video']['source_url']
+              if(url.index('youtube.com') == nil)
+                  @embedURL.push(url)
+              else
+                  fixURL = url[0, url.length-2] + '0'
+                  @embedURL.push(fixURL)
+              end
               @videoPosts.push(post['attachment'])
-              user = User.where(:user_id => post['source_id']).first()
-              user.videos.create(:user_id => post['source_id'], :created_time => post['created_time'], :post_id => post['post_id'], :img_src => post['attachment']['media'][0]['src'], :src_url => post['attachment']['media'][0]['video']['source_url'])
+              #user = User.where(:user_id => post['source_id']).first()
+             # user.videos.create(:user_id => post['source_id'], :created_time => post['created_time'], :post_id => post['post_id'], :img_src => post['attachment']['media'][0]['src'], :src_url => post['attachment']['media'][0]['video']['source_url'])
             end
           end
         end
