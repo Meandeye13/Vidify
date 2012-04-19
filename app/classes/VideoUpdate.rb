@@ -18,6 +18,7 @@ def updateVideos(token, friendIds)
 
     @videoPosts = []
     @embedURL = []
+    @videoID = []
     @posts.each_value do |query|
       query.each do |post|
 
