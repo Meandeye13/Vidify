@@ -50,6 +50,7 @@ def show
 
     @videoPosts = []
     @embedURL = []
+    @videoID = []
     @posts.each_value do |query|
       query.each do |post|
 
@@ -61,6 +62,19 @@ def show
                   @embedURL.push(url)
               else
                   fixURL = url[0, url.length-2] + '0'
+                  startPos = url.index('v/')
+
+                  if(startPos==nil)
+                    startPos = url.index('v=')
+                  end
+
+                  if(startPos!=nil)
+                    endPos = url.index('?')
+                    if(endPos != nil)
+                      vidID = url[startPos+2..endPos-1]
+                      @videoID.push(vidID)
+                    end
+                  end
                   @embedURL.push(fixURL)
               end
               @videoPosts.push(post['attachment'])
