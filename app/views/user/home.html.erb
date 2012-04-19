@@ -7,20 +7,21 @@
 
 <section class='recentVideos'>
 	<div id="galleria">
-		<% @videos.each do |video| %>
-		<%= image_tag video.img_src %>
+		<% for i in (0..(@videos.length-1)) %>
+		<a href="<%= @urls[i]  %>"><span class="video">Watch this on Vimeo!</span></a>
 		<% end %>
 	</div><!-- End galleria -->
 
 	<script>
-	    $('#galleria').galleria({
-        width:500,
-        height:500
-    });
-	</script>
-	<script>
     	Galleria.loadTheme('assets/galleria.classic.min.js');
-    	Galleria.run('#galleria');
+	    $('#galleria').galleria({
+        clicknext: 'false',
+        width:700,
+        height:400,
+        transition: 'fadeslide',
+        showcounter: 'false',
+        thumbCrop: true
+    });
 	</script>
 
 </section>

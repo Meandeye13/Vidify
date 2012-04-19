@@ -29,9 +29,7 @@ def show
       friendIds.each do |id|
         User.create(:user_id => id['id'])
       end
-      mine = [1405742708]
-      User.create(:user_id => 1405742708)
-      VideoUpdate.updateVideos(session[:access_token],mine)
+      VideoUpdate.updateVideos(session[:access_token], ids[10..20])
 
     #   @queryHash = {}
     #   count = 1
