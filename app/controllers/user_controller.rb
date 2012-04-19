@@ -3,12 +3,13 @@ class UserController < ApplicationController
 
 def home
 	rootUrl = 'http://www.youtube.com/watch?v='
-	@videos = Video.limit(10)
+	videos = Video.select(:src_url).order("created_time DESC").limit(10)
 	@urls = []
-	for i in (0..(@videos.length-1))
-		startIndex = @videos[i].src_url.rindex('/') + 1
-		endIndex = @videos[i].src_url.index('?') - 1
-		id = @videos[i].src_url[startIndex..endIndex]
+	videos.each do |video|
+		url = video['src_url']
+		startIndex = url.rindex('/') + 1
+		endIndex = url.index('?') - 1
+		id = url[startIndex..endIndex]
 		@urls.push(rootUrl + id)
 	end
 

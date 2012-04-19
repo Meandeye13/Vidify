@@ -7,8 +7,8 @@
 
 <section class='recentVideos'>
 	<div id="galleria">
-		<% for i in (0..(@videos.length-1)) %>
-		<a href="<%= @urls[i]  %>"><span class="video">Watch this on Vimeo!</span></a>
+		<% @urls.each do |url| %>
+		<a href="<%= url  %>"><span class="video"></span></a>
 		<% end %>
 	</div><!-- End galleria -->
 
@@ -19,9 +19,11 @@
         width:700,
         height:400,
         transition: 'fadeslide',
-        showcounter: 'false',
-        thumbCrop: true
+        thumbCrop: 'height',
+        youtube: { height: '330px', width: '330px' }
     });
+	    $("iframe",top.document).height(280);
+	    $("iframe",top.document).width(420);
 	</script>
 
 </section>

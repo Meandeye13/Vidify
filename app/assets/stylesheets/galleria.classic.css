@@ -7,7 +7,7 @@
 .galleria-container {
     position: relative;
     overflow: hidden;
-    background: #000;
+    background: #FFF;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -28,6 +28,11 @@
     margin-left: auto;
     margin-right: auto;
 }
+.galleria-image
+{
+    height: 280px;
+    width: 420px;
+}
 .galleria-thumbnails-container {
     height: 50px;
     bottom: 0;
@@ -43,7 +48,7 @@
 .galleria-thumbnails .galleria-image {
     height: 40px;
     width: 40px;
-    background: #000;
+    background: #FFF;
     margin: 0 5px 0 0;
     border: 1px solid #000;
     float: left;
@@ -58,9 +63,9 @@
 .galleria-counter {
     position: absolute;
     bottom: 10px;
-    left: 10px;
+    left: -60px;
     text-align: right;
-    color: #fff;
+    color: #000;
     font: normal 11px/1 arial,sans-serif;
     z-index: 1;
 }
@@ -156,6 +161,7 @@
     left: 10px;
     z-index: 2;
     background-position: 0 46px;
+    border: 1px solid;
 }
 .galleria-image-nav-right {
     left: auto;
