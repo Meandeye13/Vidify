@@ -28,14 +28,14 @@ def show
       friendIds.each do |id|
         User.create(:user_id => id['id'])
       end
-      
+
       @queryHash = {}
       count = 1
       for i in (0..10)
         id = friendIds[i]['id']
         u = User.getUser(id)
         begin
-         @queryHash["query#{i}"] = "SELECT post_id, source_id, created_time, attachment FROM stream Where source_id=#{id} limit 100"
+         #@queryHash["query#{i}"] = "SELECT post_id, source_id, created_time, attachment FROM stream Where source_id=#{id} limit 100"
         rescue Exception => e
           puts ex.message
         end
@@ -46,7 +46,7 @@ def show
         
       #   count += 1
       # end
-    @queryHash["query#{11}"] = "SELECT post_id, source_id, created_time, attachment FROM stream Where source_id=me() limit 10000"
+    @queryHash["query#{0}"] = "SELECT post_id, source_id, created_time, attachment FROM stream Where source_id=me() limit 10000"
     @posts = @api.fql_multiquery(@queryHash)
 
     @videoPosts = []

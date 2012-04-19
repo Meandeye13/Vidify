@@ -1,3 +1,4 @@
+class Algorithm
 #Kmeans algorithm
 def kMeans(centroids,partions,users,k)
 	groupRound++
@@ -70,4 +71,6 @@ end
 
 def findCentroid(partion)
 	return partion[0]
+end
+
 end
