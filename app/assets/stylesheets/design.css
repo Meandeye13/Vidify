@@ -1,0 +1,73 @@
+
+body
+{
+	height: 900px;
+	width: 800px;
+	border: 1px solid;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+header
+{
+	position:relative;
+	border-radius: 3px;
+	box-shadow: 0 0 2px #284B7E;
+	width: 800px;
+	height: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0px;
+	opacity: 1;
+
+	/* fixes a dumb margin collapse with header */
+	overflow: hidden;
+}
+
+h1
+{
+	position: absolute;
+	margin: 0px;
+	text-align: center;
+	color: #284B7E;
+	bottom: 20px;
+	left: 70px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+h2
+{
+	margin: 15px 0px 24px 0px;
+	text-align: center;
+	color: #284B7E;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+section.recommendations
+{
+	position: relative;
+	height: 200px;
+	width: 396px;
+	margin-left: 300px;
+	margin-top: 20px;
+}
+
+div.recommendedVideo
+{
+	border: 1px solid;
+	height: 130px;
+	width: 130px;
+	float: left;
+}
+
+section.recentVideos
+{
+	border: 1px solid;
+	margin: 0px 20px 20px 20px;
+	height: 550px;
+}
+
+div.demo
+{
+	border: 1px solid;
+}

@@ -14,6 +14,25 @@ if (window.location.hash == '#_=_') {
     e.preventDefault(); // no page reload
 }
 </script>
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+FB.init({
+ appId  : '287289548013361',
+ status : true, // check login status
+ cookie : true, // enable cookies to allow the server to access the session
+ xfbml  : true// parse XFBML
+ });
+
+ FB.Canvas.setAutoResize(7);
+
+ </script>
+<header>
+  <%= link_to raw("<h1>Vidify</h1>"), root_url  %>
+</header>
+<section class='main'>
+
+</section>
 
 <%= yield %>
 

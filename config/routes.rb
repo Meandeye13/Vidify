@@ -1,6 +1,6 @@
 Vidify::Application.routes.draw do
 
-  root :to => 'facebook_test#show'
+  root :to => 'user#home'
 
   match "facebookData" => "facebook_test#show"
 
