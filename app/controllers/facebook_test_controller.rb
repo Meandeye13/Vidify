@@ -28,10 +28,7 @@ def show
       friendIds.each do |id|
         User.create(:user_id => id['id'])
       end
-
-      myid.each do |id|
-        User.create(:user_id => id['id'])
-      end
+      
       @queryHash = {}
       count = 1
       for i in (0..10)
