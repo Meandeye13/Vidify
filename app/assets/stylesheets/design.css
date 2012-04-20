@@ -1,7 +1,6 @@
 
 body
 {
-	height: 900px;
 	width: 800px;
 	border: 1px solid;
 	margin-left: auto;
@@ -64,10 +63,14 @@ section.recentVideos
 {
 	border: 1px solid;
 	margin: 0px 20px 20px 20px;
-	height: 550px;
+	padding-bottom: 80px;
 }
 
-div.demo
+#galleria
 {
-	border: 1px solid;
+	margin-top: 70px;
+}
+
+div.fb-comments
+{
 }
