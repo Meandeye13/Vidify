@@ -74,3 +74,16 @@ section.recentVideos
 div.fb-comments
 {
 }
+
+div.friendSelector
+{
+	margin-left: auto;
+	margin-right: auto;
+	width: 300px;
+}
+
+button.search
+{
+	width: 200px;
+	height: 50px;
+}

@@ -1,0 +1,20 @@
+<script type="text/javascript">
+function search(){
+	for (i=0; i<document.friendSelect.friends.length; i++){
+		if(document.friendSelect.friends[i].checked==true){
+			alert(document.friendSelect.friends[i].value);
+		}
+	}
+}
+</script>
+<form name="friendSelect">
+<div class="friendSelector">
+<p>Please select the friends to search</p>
+<% @friends.each do |friend| %>
+<img src=<%=friend['pic_square']%>><%= friend['name']%>: <input type="checkbox" name="friends" value=<%= friend['uid']%>  />
+<br />
+<% end %>
+<br/>
+<button class="search" type="button" onclick="search()">Find Pictures</button>
+</div>
+</form>
