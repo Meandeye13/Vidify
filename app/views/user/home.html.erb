@@ -8,12 +8,12 @@
 <section class='recentVideos'>
 	<div id="galleria">
 		<% @urls.each do |url| %>
-		<a href="<%= url  %>"><span class="video" data-description="My description"></span></a>
+		<a href="<%= url  %>"><span class="video" data-description="Posted by: "></span></a>
 		<% end %>
 	</div><!-- End galleria -->
 
 	<script>
-    	Galleria.loadTheme('assets/galleria.classic.min.js');
+    	Galleria.loadTheme('assets/galleria.classic.js');
 	    $('#galleria').galleria({
         clicknext: 'false',
         width:700,
