@@ -32,7 +32,16 @@ FB.init({
   <%= link_to raw("<h1>Vidify</h1>"), root_url  %>
 </header>
 <section class='main'>
+<script>
+  $(function() {
+    $(".friends_btn" ).buttonset();
+  });
+  </script>
 
+  <div class='friends_btn'>
+    <%= link_to "Home", root_url %>
+    <%= link_to "Friends", :action => "friendList" %>
+  </div>
 </section>
 
 <%= yield %>

@@ -93,6 +93,9 @@
     display: none;
     /* IE7 */ zoom:1;
     width: 80px;
+    opacity: .3;
+    border-radius: 100px;
+    text-align: center;
 }
 .galleria-info-title {
     font: bold 12px/1.1 arial,sans-serif;
