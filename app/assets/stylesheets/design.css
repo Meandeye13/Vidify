@@ -80,6 +80,44 @@ div.friendSelector
 	margin-left: auto;
 	margin-right: auto;
 	width: 300px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+img.imgCheckBox
+{
+	cursor: pointer;
+	border-radius: 4px;
+	float: left;
+}
+
+img.imgCheckBox:hover
+{
+	opacity:.6;
+    filter: alpha(opacity=60);
+}
+
+img.imgChecked
+{
+	opacity:.6;
+    filter: alpha(opacity=60);
+    box-shadow: 0 0 1px 2px #000000;
+}
+
+div.friend
+{
+	width: 100%;
+	height: 54px;
+	margin-bottom: 5px;
+	padding: 2px 0px 2px 2px;
+
+	/* fixes a dumb margin collapse that messes up vertical centering of friendName */
+	overflow: hidden;
+}
+
+div.friendName
+{
+	margin: 13px 0px 0px 60px;
+	width: 225px;
 }
 
 button.search
