@@ -1,0 +1,127 @@
+
+body
+{
+	width: 800px;
+	border: 1px solid;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+header
+{
+	position:relative;
+	border-radius: 3px;
+	box-shadow: 0 0 2px #284B7E;
+	width: 800px;
+	height: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0px;
+	opacity: 1;
+
+	/* fixes a dumb margin collapse with header */
+	overflow: hidden;
+}
+
+h1
+{
+	position: absolute;
+	margin: 0px;
+	text-align: center;
+	color: #284B7E;
+	bottom: 20px;
+	left: 70px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+h2
+{
+	margin: 15px 0px 24px 0px;
+	text-align: center;
+	color: #284B7E;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+section.recommendations
+{
+	position: relative;
+	height: 200px;
+	width: 396px;
+	margin-left: 300px;
+	margin-top: 20px;
+}
+
+div.recommendedVideo
+{
+	border: 1px solid;
+	height: 130px;
+	width: 130px;
+	float: left;
+}
+
+section.recentVideos
+{
+	border: 1px solid;
+	margin: 0px 20px 20px 20px;
+	padding-bottom: 80px;
+}
+
+#galleria
+{
+	margin-top: 70px;
+}
+
+div.fb-comments
+{
+}
+
+div.friendSelector
+{
+	margin-left: auto;
+	margin-right: auto;
+	width: 300px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+img.imgCheckBox
+{
+	cursor: pointer;
+	border-radius: 4px;
+	float: left;
+}
+
+img.imgCheckBox:hover
+{
+	opacity:.6;
+    filter: alpha(opacity=60);
+}
+
+img.imgChecked
+{
+	opacity:.6;
+    filter: alpha(opacity=60);
+    box-shadow: 0 0 1px 2px #000000;
+}
+
+div.friend
+{
+	width: 100%;
+	height: 54px;
+	margin-bottom: 5px;
+	padding: 2px 0px 2px 2px;
+
+	/* fixes a dumb margin collapse that messes up vertical centering of friendName */
+	overflow: hidden;
+}
+
+div.friendName
+{
+	margin: 13px 0px 0px 60px;
+	width: 225px;
+}
+
+button.search
+{
+	width: 200px;
+	height: 50px;
+}

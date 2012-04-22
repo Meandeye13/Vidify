@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ownerid: 1
+  name: MyString
+
+two:
+  ownerid: 1
+  name: MyString

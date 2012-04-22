@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta property='fb:app_id' content='287289548013361' />
   <title>Vidify</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
@@ -14,6 +15,35 @@ if (window.location.hash == '#_=_') {
     e.preventDefault(); // no page reload
 }
 </script>
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+FB.init({
+ appId  : '287289548013361',
+ status : true, // check login status
+ cookie : true, // enable cookies to allow the server to access the session
+ xfbml  : true// parse XFBML
+ });
+
+ FB.Canvas.setAutoResize(7);
+
+ </script>
+<header>
+  <%= link_to raw("<h1>Vidify</h1>"), root_url  %>
+</header>
+<section class='main'>
+<script>
+  $(function() {
+    $(".friends_btn" ).buttonset();
+  });
+  </script>
+
+  <div class='friends_btn'>
+    <%= link_to "Home", root_url %>
+    <%= link_to "Friends", :action => "friendList" %>
+    <%= link_to "Groups", root_url %>
+  </div>
+</section>
 
 <%= yield %>
 

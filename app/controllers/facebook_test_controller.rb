@@ -1,10 +1,14 @@
 class FacebookTestController < ApplicationController
 
 require 'koala'
+<<<<<<< HEAD
 require 'VideoJson'
 def frank
       emp = VideoJson.new
       @gerd=emp.out()
+=======
+require 'VideoUpdate'
+>>>>>>> 213bb53717c455130b8345e9cbe9d9071c717587
 
       @loca=emp.getJson()
 
@@ -44,64 +48,66 @@ def show
       friendIds.each do |id|
         User.create(:user_id => id['id'])
       end
-      @queryHash = {}
-      count = 1
-      for i in (0..10)
-        id = friendIds[i]['id']
-        u = User.getUser(id)
-        begin
-         #@queryHash["query#{i}"] = "SELECT post_id, source_id, created_time, attachment FROM stream Where source_id=#{id} limit 100"
-        rescue Exception => e
-          puts ex.message
-        end
-      end
+      VideoUpdate.updateVideos(session[:access_token], ids[51..60])
+
+    #   @queryHash = {}
+    #   count = 1
+    #   for i in (0..10)
+    #     id = friendIds[i]['id']
+    #     u = User.getUser(id)
+    #     begin
+    #      #@queryHash["query#{i}"] = "SELECT post_id, source_id, created_time, attachment FROM stream Where source_id=#{id} limit 100"
+    #     rescue Exception => e
+    #       puts ex.message
+    #     end
+    #   end
      
-      # friendIds.each do |idHash|
-      #   id = idHash['id']
+    #   # friendIds.each do |idHash|
+    #   #   id = idHash['id']
         
-      #   count += 1
-      # end
-    @queryHash["query#{0}"] = "SELECT post_id, source_id, created_time, attachment FROM stream Where source_id=me() limit 10000"
-    @posts = @api.fql_multiquery(@queryHash)
+    #   #   count += 1
+    #   # end
+    # @queryHash["query#{0}"] = "SELECT post_id, source_id, created_time, attachment FROM stream Where source_id=me() limit 10000"
+    # @posts = @api.fql_multiquery(@queryHash)
 
-    @videoPosts = []
-    @embedURL = []
-    @videoID = []
-    @posts.each_value do |query|
-      query.each do |post|
+    # @videoPosts = []
+    # @embedURL = []
+    # @videoID = []
+    # @posts.each_value do |query|
+    #   query.each do |post|
 
-        if post['attachment'].has_key?('media')
-          if post['attachment']['media'].length > 0
-            if post['attachment']['media'][0].has_key?('video') 
-              url = post['attachment']['media'][0]['video']['source_url']
-              if(url.index('youtube.com') == nil)
-                  @embedURL.push(url)
-              else
-                  fixURL = url[0, url.length-2] + '0'
-                  startPos = url.index('v/')
+    #     if post['attachment'].has_key?('media')
+    #       if post['attachment']['media'].length > 0
+    #         if post['attachment']['media'][0].has_key?('video') 
+    #           url = post['attachment']['media'][0]['video']['source_url']
+    #           if(url.index('youtube.com') == nil)
+    #               @embedURL.push(url)
+    #           else
+    #               fixURL = url[0, url.length-2] + '0'
+    #               startPos = url.index('v/')
 
-                  if(startPos==nil)
-                    startPos = url.index('v=')
-                  end
+    #               if(startPos==nil)
+    #                 startPos = url.index('v=')
+    #               end
 
-                  if(startPos!=nil)
-                    endPos = url.index('?')
-                    if(endPos != nil)
-                      vidID = url[startPos+2..endPos-1]
-                      @videoID.push(vidID)
-                    end
-                  end
-                  @embedURL.push(fixURL)
-              end
-              @videoPosts.push(post['attachment'])
-              #user = User.where(:user_id => post['source_id']).first()
-             # user.videos.create(:user_id => post['source_id'], :created_time => post['created_time'], :post_id => post['post_id'], :img_src => post['attachment']['media'][0]['src'], :src_url => post['attachment']['media'][0]['video']['source_url'])
-            end
-          end
-        end
-      end
+    #               if(startPos!=nil)
+    #                 endPos = url.index('?')
+    #                 if(endPos != nil)
+    #                   vidID = url[startPos+2..endPos-1]
+    #                   @videoID.push(vidID)
+    #                 end
+    #               end
+    #               @embedURL.push(fixURL)
+    #           end
+    #           @videoPosts.push(post['attachment'])
+    #           #user = User.where(:user_id => post['source_id']).first()
+    #          # user.videos.create(:user_id => post['source_id'], :created_time => post['created_time'], :post_id => post['post_id'], :img_src => post['attachment']['media'][0]['src'], :src_url => post['attachment']['media'][0]['video']['source_url'])
+    #         end
+    #       end
+    #     end
+    #   end
 
-    end
+    # end
 
   end
 
