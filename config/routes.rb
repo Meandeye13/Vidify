@@ -1,15 +1,21 @@
 Vidify::Application.routes.draw do
 
-  root :to => 'facebook_test#frank'
-  # root :to => 'user#login'
+  
+  root :to => 'user#login'
+
+  match "frank" => "facebook_test#frank"
 
   match "friend" => "user#show"
 
-  match "friendList" => "facebook_test#friendList"
+  match "friendList" => "user#friendList"
+
+  match "myWall" => "user#myWall"
 
   match "facebookData" => "facebook_test#show"
 
   match "callback" => "user#callback"
+
+  match "showvideos" => "user#showVideos"
 
    match "home" => "user#home"
 
