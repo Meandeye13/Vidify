@@ -1,15 +1,17 @@
 class FacebookTestController < ApplicationController
 
 require 'koala'
-<<<<<<< HEAD
+
+require 'VideoUpdate'
 require 'VideoJson'
 def frank
-      emp = VideoJson.new
-      @gerd=emp.out()
-=======
-require 'VideoUpdate'
->>>>>>> 213bb53717c455130b8345e9cbe9d9071c717587
 
+  # flush out this object
+  # add fucking model
+#  bob sagget it out!
+      emp = VideoJson.new("NWHfY_lvKIQ")
+      @gerd="terrell owens"
+      emp.setId("NWHfY_lvKIQ")
       @loca=emp.getJson()
 
       @version=@loca['version'] 
@@ -22,6 +24,8 @@ require 'VideoUpdate'
 
         # puts str.split(",")
     end
+def friendList
+end
 def show  
     session[:oauth] = Koala::Facebook::OAuth.new('287289548013361', 'fe9618a93f8eb1be8c0f017e996e4fb1', "http://localhost:3000" + '/callback')
     Koala.http_service.ca_file = "C:/RailsInstaller/cacert.pem"
@@ -112,3 +116,5 @@ def show
   end
 
 end
+
+

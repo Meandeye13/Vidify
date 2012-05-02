@@ -5,7 +5,7 @@ Vidify::Application.routes.draw do
 
   match "friend" => "user#show"
 
-  match "friendList" => "user#friendList"
+  match "friendList" => "facebook_test#friendList"
 
   match "facebookData" => "facebook_test#show"
 
