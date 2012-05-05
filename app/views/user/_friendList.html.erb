@@ -25,17 +25,18 @@ function check(e, checkboxId)
 
 }
 </script>
-<form name="friendSelect">
+<form name="friendSelect" action="/showvideos" method="post">
 	<div class="friendSelector">
 		<p>Please select the friends to search</p>
 		<% @friends.each do |friend| %>
 			<div class="friend">
 				<img src=<%=friend['pic_square']%> onclick="check(this,<%= friend['uid']%>);" class="imgCheckBox" />
 				<div class="friendName"><%= friend['name']%></div>
-				<input class="check" id=<%= "check" + friend['uid'].to_s%> type="checkbox" name="friends" value=<%= friend['uid']%> style="display:none"  />
+				<input class="check" id=<%= "check" + friend['uid'].to_s%> type="checkbox" name="friends[]" value=<%= friend['uid']%> style="display:none"  />
 			</div>
 		<% end %>
 		<br/>
-		<button class="search" type="button" onclick="search()">Find Pictures</button>
+		<input class="btn btn-large btn-primary" name="commit" type="submit" 
+         value="Find Videos" />
 		</div>
 </form>

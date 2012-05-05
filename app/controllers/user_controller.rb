@@ -10,6 +10,7 @@ def callback
 	if params[:code]
 		# acknowledge code and get access token from FB
 		session[:access_token] = session[:oauth].get_access_token(params[:code])
+		session[:api] = Koala::Facebook::API.new(session[:access_token])
 	end   
 
 	# auth established, now do a graph call:
@@ -31,7 +32,9 @@ def home
 	users = users[0..(users.length-2)]
 
 	@query = "SELECT uid,name FROM user WHERE uid in(#{users})"
-	api = Koala::Facebook::API.new(session[:access_token])
+	
+	api = session[:api]
+	#api = Koala::Facebook::API.new(session[:access_token])
 	@friends = api.fql_query("SELECT uid,name FROM user WHERE uid in(#{users})");
 
 	#convert array of hashes to a hash where key = uid and value = name
@@ -55,10 +58,39 @@ def home
 end
 
 def friendList
-	@api = Koala::Facebook::API.new(session[:access_token])
+	api = session[:api]
 
-	@friends = @api.fql_query("select uid, name, pic_square from user where uid in (select uid2 from friend where uid1 = me())")
+	@friends = api.fql_query("select uid, name, pic_square from user where uid in (select uid2 from friend where uid1 = me())")
 	@friends = @friends.sort_by{|friend| friend['name']}
 end
 
+def myWall
+	myId = []
+	api = session[:api]
+	me = api.get_object('me')
+	myId.push(me['id'].to_s)
+	redirect_to :action => "showVideos", :friends => myId
+end
+
+def showVideos 
+	@friendIds = params[:friends]
+	
+	#users = ""
+	@videos = Video.where('src_url LIKE ?','%youtube.com%').order("created_time DESC")
+	#@videos.each do |video|
+	#	users = users + (video.user.user_id.to_s) + ","
+	#end
+	@videoLinks = []
+	@unused = []
+	
+	if(@friendIds != nil)
+		@videos.each do |video|
+			if(@friendIds.include?(video.user.user_id.to_s))
+				@videoLinks.push(video.src_url)
+			else
+				@unused.push(video.user.user_id)
+			end
+		end
+	end
+end
 end
