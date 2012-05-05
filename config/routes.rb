@@ -2,15 +2,21 @@ Vidify::Application.routes.draw do
 
   root :to => 'user#login'
 
+  match "frank" => "facebook_test#frank"
+
   match "friend" => "user#show"
 
   match "friendList" => "user#friendList"
+
+  match "myWall" => "user#myWall"
 
   match "facebookData" => "facebook_test#show"
 
   match "callback" => "user#callback"
 
-   match "home" => "user#home"
+  match "showvideos" => "user#showVideos"
+
+  match "home" => "user#home"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
