@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422225720) do
+ActiveRecord::Schema.define(:version => 20120506205145) do
 
   create_table "group_members", :force => true do |t|
     t.integer  "user_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20120422225720) do
     t.string   "src_url"
     t.string   "post_id"
     t.string   "img_src"
+    t.integer  "group_id"
   end
 
   add_index "videos", ["post_id"], :name => "index_videos_on_post_id", :unique => true
