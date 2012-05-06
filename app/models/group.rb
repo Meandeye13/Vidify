@@ -3,7 +3,7 @@ class Group < ActiveRecord::Base
 
 
 	belongs_to :user
-	has_many :group_members
+	has_many :group_members, :videos
 	has_many :users, :through => :group_members
 
 	accepts_nested_attributes_for :users
