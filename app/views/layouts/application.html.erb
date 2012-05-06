@@ -34,15 +34,15 @@ FB.init({
 <section class='main'>
 <script>
   $(function() {
-    $(".friends_btn" ).buttonset();
+    $(".navBtns" ).buttonset();
   });
   </script>
 
-  <div class='friends_btn'>
+  <nav class='navBtns'>
     <%= link_to "Home", root_url %>
-    <%= link_to "Friends", :action => "friendList" %>
-    <%= link_to "Groups", root_url %>
-  </div>
+    <%= link_to "Friends", :action => "friendList", :controller => "user" %>
+    <%= link_to "Groups", :controller => "groups" %>
+  </nav>
 </section>
 
 <%= yield %>

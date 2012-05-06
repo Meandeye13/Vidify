@@ -2,7 +2,6 @@
 body
 {
 	width: 800px;
-	border: 1px solid;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -10,8 +9,8 @@ body
 header
 {
 	position:relative;
-	border-radius: 3px;
-	box-shadow: 0 0 2px #284B7E;
+	/*border-radius: 3px;
+	box-shadow: 0 0 2px #284B7E;*/
 	width: 800px;
 	height: 100px;
 	margin-left: auto;
@@ -34,10 +33,19 @@ h1
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
+nav.navBtns
+{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 258px;
+	background: rgba(40,75,126,0.8);
+}
+
 h2
 {
-	margin: 15px 0px 24px 0px;
-	text-align: center;
+	margin: 15px 0px 14px 0px;
+	text-align: left;
 	color: #284B7E;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
@@ -46,22 +54,22 @@ section.recommendations
 {
 	position: relative;
 	height: 200px;
-	width: 396px;
-	margin-left: 300px;
+	width: 786px;
+	margin-left: auto;
+	margin-right: auto;
 	margin-top: 20px;
 }
 
 div.recommendedVideo
 {
-	border: 1px solid;
 	height: 130px;
-	width: 130px;
+	width: 250px;
 	float: left;
+	padding: 5px;
 }
 
 section.recentVideos
 {
-	border: 1px solid;
 	margin: 0px 20px 20px 20px;
 	padding-bottom: 80px;
 }

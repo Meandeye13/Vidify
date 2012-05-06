@@ -19,6 +19,9 @@ Vidify::Application.routes.draw do
 
   match "home" => "user#home"
 
+  match "displayCreate" => "groups#displayCreate"
+  resources :groups
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

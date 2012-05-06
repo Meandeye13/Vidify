@@ -18,6 +18,11 @@ def callback
 end
 
 def home
+	if (!session[:user_id].present?)
+		id_response = session[:api].get_object("me", "fields"=>"id")
+		newUser = User.find_or_create_by_user_id(:user_id => id_response['id'])
+		session[:user_id] = newUser.id
+	end
 	rootUrl = 'http://www.youtube.com/watch?v='
 	#videos2 = Video.where('src_url LIKE ?', '%youtube.com%').order("created_time DESC").limit(10) get user who posted the video (user pointer is invalidated doing projection on videos)
 	@videos = Video.where('src_url LIKE ?', '%youtube.com%').order("created_time DESC").limit(10)

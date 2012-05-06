@@ -1,0 +1,44 @@
+<script>
+
+function search(){
+	for (i=0; i<document.friendSelect.friends.length; i++){
+		if(document.friendSelect.friends[i].checked==true){
+			alert(document.friendSelect.friends[i].value);
+		}
+	}
+}
+
+function check(e, checkboxId)
+{
+	var id = "#check" + checkboxId;
+	var checkbox = $(id);
+	if (!checkbox.is(":checked"))
+	{
+		checkbox.prop("checked", true);
+	}
+	else
+	{
+		checkbox.prop("checked", false);
+	}
+	$(e).toggleClass('imgChecked', checkbox.is(":checked"));
+	
+
+}
+</script>
+<%= form_tag({ :action => "create" }, :remote => true) do %>
+	<div class="friendSelector">
+		<p>Please select the friends to search</p>
+
+
+
+		<% @friends.each do |friend| %>
+			<div class="friend">
+				<img src=<%=friend['pic_square']%> onclick="check(this,<%= friend['uid']%>);" class="imgCheckBox" />
+				<div class="friendName"><%= friend['name']%></div>
+				<input class="check" id=<%= "check" + friend['uid'].to_s%> type="checkbox" name="friend[uid][]" value=<%= friend['uid']%> style="display:none"  />
+			</div>
+		<% end %>
+		<br/>
+	</div>
+	<%= submit_tag("Create") %>
+<% end %>

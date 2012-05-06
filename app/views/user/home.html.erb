@@ -1,8 +1,10 @@
 <section class='recommendations'>
-	<h2>Recommendations</h2>
-	<div class='recommendedVideo'> </div>
-	<div class='recommendedVideo'> </div>
-	<div class='recommendedVideo'> </div>
+	<h2>Recommendations:</h2>
+	<% @recommendedVideos.each do |videoSrc| %>
+	<div class='recommendedVideo'>
+		<embed type="application/x-shockwave-flash" src="<%= videoSrc[:src_url] %>" width="250" height="130" style="display: block;" quality="high" scale="scale" allowfullscreen="true" allowscriptaccess="never" salign="tl" wmode="opaque" flashvars="width=250&amp;height=130">
+	</div>
+	<% end %>
 </section>
 
 <section class='recentVideos'>
