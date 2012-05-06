@@ -93,18 +93,20 @@ def showVideos
 	@videoLinks = []
 	sent = params[:sent]
 
-	groupIds = []
+	@groupIds = []
 
 	if(sent == 'true')
 		groupMembers = GroupMember.where('user_id = ?',myId).all()
 		groupMembers.each do |groupMem|
-			groupIds.push(groupMem.group.id)
+			if(groupMem.group.user_id != myId)
+				@groupIds.push(groupMem.group.id)
+			end
 		end
 	end
 	
 	if(friendIds != nil)
 		videos.each do |video|
-			if(friendIds.include?(video.user.user_id.to_s)||((video.group != nil)&&groupIds.include?(video.group.id)))
+			if(friendIds.include?(video.user.user_id.to_s)||((video.group != nil)&&@groupIds.include?(video.group.id)))
 				@videoLinks.push(video.src_url)
 			end
 		end
