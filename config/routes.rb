@@ -19,6 +19,10 @@ Vidify::Application.routes.draw do
 
   match "home" => "user#home"
 
+  match "sendVideo" => "user#sendVideo"
+
+  match "sentVideos" => "user#sentVideos"
+
   match "displayCreate" => "groups#displayCreate"
   resources :groups
 

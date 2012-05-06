@@ -76,40 +76,61 @@ def myWall
 	myId.push(me['id'].to_s)
 	id = {}
 	id['uid'] = myId
-	redirect_to :action => "showVideos", :friend => id, :sent => true
+	redirect_to :action => "showVideos", :friend => id, :extra => 'groups'
 end
 
 def showVideos 
+	@videoLinks = []
+	myId = session[:user_id]
+
+	videos = Video.where('src_url LIKE ?','%youtube.com%').order("created_time DESC")
+	
+	extra = params[:extra]
+	if(extra == 'sent')
+		myGroups = Group.where('user_id = ?',myId).all()
+		videos.each do |video|
+			if(myGroups.include?(video.group))
+				@videoLinks.push(video.src_url)
+			end
+		end
+	end
+
+	if(params[:friend] == nil)
+		return
+	end
 	friendIds = params[:friend]['uid']
 	
+	
 	#users = ""
-	videos = Video.where('src_url LIKE ?','%youtube.com%').order("created_time DESC")
 	#@videos.each do |video|
 	#	users = users + (video.user.user_id.to_s) + ","
 	#end
+	groupIds = []
 
-	myId = session[:user_id]
-
-	@videoLinks = []
-	sent = params[:sent]
-
-	@groupIds = []
-
-	if(sent == 'true')
+	if(extra == 'groups')
 		groupMembers = GroupMember.where('user_id = ?',myId).all()
 		groupMembers.each do |groupMem|
 			if(groupMem.group.user_id != myId)
-				@groupIds.push(groupMem.group.id)
+				groupIds.push(groupMem.group.id)
 			end
 		end
 	end
 	
 	if(friendIds != nil)
 		videos.each do |video|
-			if(friendIds.include?(video.user.user_id.to_s)||((video.group != nil)&&@groupIds.include?(video.group.id)))
+			if(friendIds.include?(video.user.user_id.to_s)||((video.group != nil)&&groupIds.include?(video.group.id)))
 				@videoLinks.push(video.src_url)
 			end
 		end
 	end
+end
+
+def sendVideo
+
+end
+
+def sentVideos
+
+	redirect_to :action => "showVideos", :extra => 'sent'
 end
 end
