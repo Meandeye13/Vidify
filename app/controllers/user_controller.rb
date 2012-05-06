@@ -74,26 +74,38 @@ def myWall
 	api = session[:api]
 	me = api.get_object('me')
 	myId.push(me['id'].to_s)
-	redirect_to :action => "showVideos", :friends => myId
+	id = {}
+	id['uid'] = myId
+	redirect_to :action => "showVideos", :friend => id, :sent => true
 end
 
 def showVideos 
-	@friendIds = params[:friend]['uid']
+	friendIds = params[:friend]['uid']
 	
 	#users = ""
-	@videos = Video.where('src_url LIKE ?','%youtube.com%').order("created_time DESC")
+	videos = Video.where('src_url LIKE ?','%youtube.com%').order("created_time DESC")
 	#@videos.each do |video|
 	#	users = users + (video.user.user_id.to_s) + ","
 	#end
+
+	myId = session[:user_id]
+
 	@videoLinks = []
-	@unused = []
+	sent = params[:sent]
+
+	groupIds = []
+
+	if(sent == 'true')
+		groupMembers = GroupMember.where('user_id = ?',myId).all()
+		groupMembers.each do |groupMem|
+			groupIds.push(groupMem.group.id)
+		end
+	end
 	
-	if(@friendIds != nil)
-		@videos.each do |video|
-			if(@friendIds.include?(video.user.user_id.to_s))
+	if(friendIds != nil)
+		videos.each do |video|
+			if(friendIds.include?(video.user.user_id.to_s)||((video.group != nil)&&groupIds.include?(video.group.id)))
 				@videoLinks.push(video.src_url)
-			else
-				@unused.push(video.user.user_id)
 			end
 		end
 	end
