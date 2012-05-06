@@ -78,7 +78,7 @@ def myWall
 end
 
 def showVideos 
-	@friendIds = params[:friends]
+	@friendIds = params[:friend]['uid']
 	
 	#users = ""
 	@videos = Video.where('src_url LIKE ?','%youtube.com%').order("created_time DESC")
