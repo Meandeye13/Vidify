@@ -1,3 +1,4 @@
-<%= debug @group %>
-<%= debug @group.user %>
-<%= debug @group.users %>
+<%= debug @groups %>
+<% @groups.each do |group|  %>
+	<%= group.name %>
+<% end %>
