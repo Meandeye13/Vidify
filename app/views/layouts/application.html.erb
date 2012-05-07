@@ -42,6 +42,9 @@ FB.init({
     <%= link_to "Home", root_url %>
     <%= link_to "Friends", :action => "friendList", :controller => "user" %>
     <%= link_to "Groups", :controller => "groups" %>
+    <%= link_to "My Wall", :action => "myWall", :controller => "user" %>
+    <%= link_to "Sent Videos", :action => "sentVideos", :controller => "user"%>
+    <%= link_to "Send Videos", :action => "sendVideo" , :controller => "user"%>
   </nav>
 </section>
 
