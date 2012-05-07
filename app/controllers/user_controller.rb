@@ -125,10 +125,6 @@ def showVideos
 	end
 end
 
-def sendVideo
-
-end
-
 def sentVideos
 	redirect_to :action => "showVideos", :extra => 'sent'
 end
