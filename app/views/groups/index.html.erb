@@ -1,11 +1,9 @@
 <script>
 $(function() {
-    $("a", ".ajaxBtn" ).button({icons: { primary: null, secondary: "ui-icon-plusthick" } });
+    $("a", ".createGroupBtn" ).button({icons: { primary: null, secondary: "ui-icon-plusthick" } });
   });
   </script>
-<div class="ajaxBtn">
-	<%= link_to "New Group", {:action => 'displayCreate' }, :remote => true  %>
-</div>
+  	<div class="groupsTitle"> <h2>Groups:</h2> </div>
 <section class="groupsMain">
 	<%= render 'show' %>
 </section>

@@ -133,3 +133,25 @@ button.search
 	width: 200px;
 	height: 50px;
 }
+
+section.groupsMain
+{
+	position: relative;
+	padding: 8px;
+}
+div.groupsTitle
+{
+	padding: 5px;
+}
+
+div.createGroupBtn
+{
+	font-size: 12px;
+	position: absolute;
+	left: 550px;
+}
+
+#accordion
+{
+	width: 500px;
+}

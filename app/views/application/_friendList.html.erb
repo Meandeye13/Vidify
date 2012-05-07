@@ -27,10 +27,9 @@ function check(e, checkboxId)
 </script>
 <%= form_tag({ :action => "create" }, :remote => true) do %>
 	<div class="friendSelector">
+		<label for="groupName">Group Name:</label>
+  		<input id="groupName" name="groupName" type="text" required="required" />
 		<p>Please select the friends to search</p>
-
-
-
 		<% @friends.each do |friend| %>
 			<div class="friend">
 				<img src=<%=friend['pic_square']%> onclick="check(this,<%= friend['uid']%>);" class="imgCheckBox" />

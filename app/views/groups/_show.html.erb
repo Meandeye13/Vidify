@@ -1,4 +1,49 @@
-<%= debug @groups %>
-<% @groups.each do |group|  %>
-	<%= group.name %>
-<% end %>
+<script>
+$(function() {
+    $("a", ".createGroupBtn" ).button({icons: { primary: null, secondary: "ui-icon-plusthick" } });
+  });
+</script>
+<div class="createGroupBtn">
+	<%= link_to "create", {:action => 'displayCreate' }, :remote => true  %>
+</div>
+<style>
+	/* IE has layout issues when sorting (see #5413) */
+	.group { zoom: 1 }
+</style>
+
+<script>
+	$(function() {
+		$( "#accordion" )
+			.accordion({
+				autoHeight: false,
+				header: "> div > h3"
+			})
+			.sortable({
+				axis: "y",
+				handle: "h3",
+				stop: function( event, ui ) {
+					// IE doesn't register the blur when sorting
+					// so trigger focusout handlers to remove .ui-state-focus
+					ui.item.children( "h3" ).triggerHandler( "focusout" );
+				}
+			});
+	});
+</script>
+
+<div id="accordion">
+	<% @groups.each do |group|  %>
+		<div class="group">
+			<h3><a href="#"><%= group.name %></a></h3>
+			<div>
+				<% group.group_members.each do |member| %>
+					<% if (member.user_id!= session[:user_id]) %>
+					<div style="float:left; margin-right: 25px">
+						<img src=<%=@friends[member.user.user_id]["pic_square"] %> />
+						<%= @friends[member.user.user_id]["name"] %>
+					</div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+</div>
