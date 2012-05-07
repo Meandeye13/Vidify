@@ -118,7 +118,7 @@ def showVideos
 	
 	if(friendIds != nil)
 		videos.each do |video|
-			if(friendIds.include?(video.user.user_id.to_s)||((video.group != nil)&&groupIds.include?(video.group.id)))
+			if((friendIds.include?(video.user.user_id.to_s)&&(video.group == nil || video.group.user_id != myId ))||((video.group != nil)&&groupIds.include?(video.group.id)))
 				@videoLinks.push(video.src_url)
 			end
 		end
@@ -130,7 +130,6 @@ def sendVideo
 end
 
 def sentVideos
-
 	redirect_to :action => "showVideos", :extra => 'sent'
 end
 end
