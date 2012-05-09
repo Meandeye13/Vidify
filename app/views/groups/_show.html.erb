@@ -43,6 +43,12 @@ $(function() {
 					</div>
 					<% end %>
 				<% end %>
+				<%= form_tag({ :action => "sendVideo" }, :remote => true) do %>
+					<label for="videoUrl" style="float:left; width:450px">Video Url:</label>
+					<input id="videoUrl" name="videoUrl" type="text" required="required" style="width:450px" />
+					<input name="groupId" value=<%= group.id.to_s %> type="hidden"/>
+					<%= submit_tag("Send Video") %>
+				<% end %>
 			</div>
 		</div>
 	<% end %>

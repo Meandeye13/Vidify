@@ -1,9 +1,6 @@
-<script>
-$(function() {
-    $("a", ".createGroupBtn" ).button({icons: { primary: null, secondary: "ui-icon-plusthick" } });
-  });
-  </script>
-  	<div class="groupsTitle"> <h2>Groups:</h2> </div>
+
+<div class="groupsTitle"> <h2>Groups:</h2> </div>
+<div id="flash_notice" style="display:none"></div>
 <section class="groupsMain">
 	<%= render 'show' %>
 </section>

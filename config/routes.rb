@@ -22,6 +22,8 @@ Vidify::Application.routes.draw do
   match "sentVideos" => "user#sentVideos"
 
   match "displayCreate" => "groups#displayCreate"
+
+  match "sendVideo" => "groups#sendVideo"
   resources :groups
 
   # The priority is based upon order of creation:

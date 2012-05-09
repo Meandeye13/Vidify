@@ -44,5 +44,22 @@ def create
     end
 end
 
+def sendVideo
+
+	group = Group.find(params[:groupId])
+
+	video = Video.new(:user_id => session[:user_id], :src_url => params[:videoUrl])
+
+	video.group = group
+	group.save
+	video.save
+
+	@friends = @friends.map {|friend| {friend["uid"] => {"name" => friend["name"], "pic_square" => friend["pic_square"] } } }
+	@friends = @friends.flatten.reduce(:merge)
+
+	respond_to do | format |  
+        format.js {render :layout => false} 
+    end
+end
 
 end
